@@ -1,0 +1,148 @@
+public class palidrome {  
+    node head;
+node h;
+node curr_next;
+
+
+     class node{ 
+            int data;
+            node next; 
+        public node(int data){ 
+            this.data=data;
+            this.next=null;
+        }
+    }
+
+
+
+
+
+
+
+    public void add(int data){  
+        node obj=new node(data);
+        if (head==null){ 
+            head=obj; 
+            return ;
+        }
+      node  curr_node=head;
+        while(curr_node.next!=null){ 
+            curr_node=curr_node.next;
+        }
+        curr_node.next=obj;
+
+
+    }
+
+
+
+    public void rev(node midnod){  
+
+        if (midnod.next==null){  
+            curr_next=midnod;
+            return;
+        }
+       
+        node curr=midnod;
+         curr_next=midnod.next;  
+         curr.next=null; 
+        node p=curr_next.next; 
+      
+        while (p!=null){ 
+            curr_next.next=curr;
+            curr=curr.next;
+            curr_next=p;
+            p=p.next;
+        } 
+
+curr_next.next=curr;
+
+        }
+
+    
+
+
+
+
+
+    public  void printl(){ 
+// node curr=curr_next; 
+node curr=head;
+while (curr!=null){ 
+    System.out.print(curr.data+"->");
+    curr=curr.next;
+}        
+System.out.print("null");
+
+    }
+
+    public  void print(){ 
+        node curr=curr_next; 
+        // node curr=head;
+        while (curr!=null){ 
+            System.out.print(curr.data+"->");
+            curr=curr.next;
+        }        
+        System.out.print("null");
+        
+            }
+        
+
+
+
+
+    public Boolean pal(){ 
+node curr=head;
+node burr=curr_next;
+while (burr!=null){ 
+    if (curr.data!=burr.data){ 
+           return false;
+    } 
+    curr=curr.next;
+    burr=burr.next;
+
+}
+return true;
+
+    }
+
+
+
+
+public node mid(){  
+if (head.next==null){ 
+    h=head;
+    return h;
+}
+    node p= head;
+     h= head; 
+    while ( p.next!=null  && p.next.next!=null){ 
+h=h.next;
+p=p.next.next;
+
+    }
+p= h.next;   
+h.next=null;
+h=p;
+return h;
+}
+
+    
+    public static void main(String args[]){ 
+
+        palidrome obx=new palidrome();
+        obx.add(1);
+        obx.add(2);
+        obx.add(1);
+        node midnod=obx.mid();  
+        obx.rev(midnod); 
+        System.out.println(obx.pal());
+        obx.printl();
+        System.out.print("\n");
+        obx.print();
+
+
+
+    }
+
+}
